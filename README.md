@@ -169,9 +169,24 @@ Already using an older version of this template? See [UPGRADING.md](UPGRADING.md
 for step-by-step migration instructions, a breakdown of what changed between
 versions, and which files are safe to overwrite vs. which need a manual merge.
 
+## Gemini and Codex
+
+This repo also includes lightweight adapters for Gemini and Codex:
+
+- `GEMINI.md` tells Gemini how to load the existing studio framework.
+- `AGENTS.md` tells Codex how to use the same agents and skills.
+- `docs/MULTI_AGENT_AVAILABILITY.md` documents the shared routing rules.
+
+The `.claude/` directory remains the canonical source of truth. Gemini and Codex
+should resolve slash-style skills to `.claude/skills/<skill>/SKILL.md` and named
+studio roles to `.claude/agents/<agent>.md`, translating Claude-only tools such
+as `Task`, `AskUserQuestion`, and `TodoWrite` to their native equivalents.
+
 ## Project Structure
 
 ```
+AGENTS.md                           # Codex adapter entrypoint
+GEMINI.md                           # Gemini adapter entrypoint
 CLAUDE.md                           # Master configuration
 .claude/
   settings.json                     # Hooks, permissions, safety rules
